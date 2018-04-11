@@ -1,0 +1,37 @@
+<?php
+$contacts = json_decode(file_get_contents('contacts.json'), true);
+?>
+
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>2.1</title>
+</head>
+<body>
+<div class="tabs">
+    <?php foreach ($contacts as $key => $value): ?>
+    <input id="tab<?php echo $key+1; ?>" type="radio" name="tabs" checked>
+    <label for="tab<?php echo $key+1; ?>" title="Вкладка <?php echo $key+1; ?>"><?php echo $value['firstName'] . ' ' . $value['lastName']; ?></label>
+    <?php endforeach; ?>
+    <?php foreach ($contacts as $key => $value): ?>
+    <section id="content-tab<?php echo $key+1; ?>">
+        <table>
+        <tr style="background-color: lightgrey;">
+            <td>Имя</td>
+            <td>Фамилия</td>
+            <td>Адрес</td>
+            <td>Номер</td>
+        </tr>
+        <tr>
+            <td><?php echo $value['firstName']; ?></td>
+            <td><?php echo $value['lastName']; ?></td>
+            <td><?php echo $value['address']; ?></td>
+            <td><?php echo $value['phoneNumber']; ?></td>
+        </tr>
+        </table>
+    </section>
+    <?php endforeach; ?>
+</div>
+</body>
+</html>
